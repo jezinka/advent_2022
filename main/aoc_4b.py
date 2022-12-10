@@ -1,4 +1,4 @@
-from main.aoc_4a import prepare_elves_territories
+from aoc_4a import prepare_elves_territories
 
 
 def get_result(file_name):

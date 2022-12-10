@@ -1,4 +1,4 @@
-from main.aoc_6a import get_result
+from aoc_6a import get_result
 
 if __name__ == '__main__':
     assert get_result('mjqjpqmgbljsphdztnvjfqwrcgsmlb', 14) == 19

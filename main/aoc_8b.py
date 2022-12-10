@@ -1,4 +1,4 @@
-from main.aoc_8a import get_trees
+from aoc_8a import get_trees
 
 
 def get_result(filename):

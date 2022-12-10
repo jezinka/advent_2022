@@ -1,4 +1,4 @@
-from main.aoc_3a import get_priority
+from aoc_3a import get_priority
 
 
 def get_result(file_name):

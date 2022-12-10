@@ -1,4 +1,4 @@
-from main.aoc_7a import create_folder_tree, count_size
+from aoc_7a import create_folder_tree, count_size
 
 TOTAL_SPACE = 70000000
 FREE_NEEDED = 30000000

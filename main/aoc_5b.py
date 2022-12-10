@@ -1,4 +1,4 @@
-from main.aoc_5a import prepare_carts, get_parsed_instruction
+from aoc_5a import prepare_carts, get_parsed_instruction
 
 
 def get_result(file_name):

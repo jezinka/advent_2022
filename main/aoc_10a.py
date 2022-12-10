@@ -1,4 +1,4 @@
-from main.crt import Crt
+from crt import Crt
 
 
 def get_result(file_name):
