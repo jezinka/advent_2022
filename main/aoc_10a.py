@@ -2,7 +2,7 @@ from main.crt import Crt
 
 
 def get_result(file_name):
-    crt = Crt()
+    crt = Crt(' ')
 
     while crt.cycle_no < 221:
         with open(file_name) as f:
