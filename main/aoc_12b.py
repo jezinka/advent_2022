@@ -1,6 +1,6 @@
 import string
 
-from main.aoc_12a import find_edges, dijkstra, prepare_maze, gather_path
+from aoc_12a import find_edges, dijkstra, prepare_maze, gather_path
 
 START_MAZE = 'S'
 END_MAZE = 'E'
@@ -29,25 +29,25 @@ def prepare_graph(maze):
     graph = {}
     for x in range(len(maze)):
         for y in range(len(maze[x])):
-            if maze[x][y] == START_MAZE:
-                start = f"{x},{y}"
-                graph[start] = find_edges(maze, [x, y], letters[0])
-                starts.append(start)
-            elif maze[x][y] == 'a':
-                start = f"{x},{y}"
-                goal = letters[:letters.index(maze[x][y]) + 2]
-                goal.append(START_MAZE)
+            cell_id = f"{x},{y}"
+            goal = []
 
-                graph[start] = find_edges(maze, [x, y], goal)
-                starts.append(start)
+            if maze[x][y] == START_MAZE:
+                goal = [letters[0]]
+                starts.append(cell_id)
             elif maze[x][y] == END_MAZE:
-                end = f"{x},{y}"
-                graph[end] = []
+                end = cell_id
             else:
                 goal = letters[:letters.index(maze[x][y]) + 2]
-                if maze[x][y] == 'y':
+
+                if maze[x][y] == 'a':
+                    goal.append(START_MAZE)
+                    starts.append(cell_id)
+                elif maze[x][y] == 'y':
                     goal.append(END_MAZE)
-                graph[f"{x},{y}"] = find_edges(maze, [x, y], goal)
+
+            graph[cell_id] = find_edges(maze, [x, y], goal)
+
     return graph, starts, end
 
 

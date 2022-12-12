@@ -70,17 +70,20 @@ def prepare_graph(maze):
     graph = {}
     for x in range(len(maze)):
         for y in range(len(maze[x])):
+            cell_id = f"{x},{y}"
+            goal = []
+
             if maze[x][y] == START_MAZE:
-                start = f"{x},{y}"
-                graph[start] = find_edges(maze, [x, y], letters[0])
+                start = cell_id
+                goal = [letters[0]]
             elif maze[x][y] == END_MAZE:
-                end = f"{x},{y}"
-                graph[end] = []
+                end = cell_id
             else:
                 goal = letters[:letters.index(maze[x][y]) + 2]
                 if maze[x][y] == 'y':
                     goal.append(END_MAZE)
-                graph[f"{x},{y}"] = find_edges(maze, [x, y], goal)
+
+            graph[cell_id] = find_edges(maze, [x, y], goal)
     return graph, start, end
 
 
