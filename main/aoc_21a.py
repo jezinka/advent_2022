@@ -20,7 +20,7 @@ def prepare_monkeys(file_name):
     monkeys = {}
     cpu = {}
     with open(file_name, 'r') as f:
-        for ind, line in enumerate(f):
+        for line in f:
             line = line.strip()
             name, operation = line.split(': ')
             if operation.isnumeric():
