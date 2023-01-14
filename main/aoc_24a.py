@@ -3,28 +3,27 @@ import itertools
 
 def get_result(file_name):
     blizzards, walls, end_position, exp_pos = prepare_maze(file_name)
+    graph_dict = create_graph(blizzards, walls)
+    return BFS(exp_pos, end_position, graph_dict)
 
+
+def create_graph(blizzards, walls):
     graph_dict = {}
-
     steps = 0
     blizzard_cycle = False
     while not blizzard_cycle:
         potential_steps = [(steps, *n[:]) for n in get_nodes(blizzards_move(blizzards, steps), walls)]
-        # print(potential_steps)
         if len(graph_dict) > 0 and [(n[1], n[2]) for n in list(graph_dict.values())[0]] == [(n[1], n[2]) for n in
                                                                                             potential_steps]:
             blizzard_cycle = True
         else:
             graph_dict[steps] = potential_steps
         steps += 1
-    print('------------------------------------------')
-    return BFS(exp_pos, end_position, graph_dict)
+    return graph_dict
 
 
 def get_neighbour_nodes(node, nodes, blizzard_cycle):
     time = node[0] + 1
-    if time > MAX_X * MAX_Y:
-        return []
 
     potential_nodes = [(time, pot_node[1], pot_node[2]) for pot_node in nodes[time % blizzard_cycle]]
     intersection_nodes = list({(time, node[1], node[2]), (time, node[1] + 1, node[2]), (time, node[1] - 1, node[2]),
@@ -108,7 +107,6 @@ def BFS(start, end, graph_dict):
         s = queue.pop(0)
 
         if s[1:] == end:
-            print(s[0])
             steps_needed = s[0]
 
         # Get all adjacent vertices of the
